@@ -73,8 +73,8 @@ while($ob = $res->GetNextElement())
 			$url1 = 'https://sapi.life-pay.ru/cloud-print/create-receipt';
 			//параметры которые необходимо передать
 			$params1 = array(
-    			'apikey' => $cass_login,
-    			'login' => $cass_key,
+    			'apikey' => $cass_key,
+    			'login' => $cass_login,
     			'purchase' =>array(
 				'products'=>array([
 					'name'=>$arResult["description"],

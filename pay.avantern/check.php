@@ -56,8 +56,8 @@ $res = CIBlockElement::GetList(Array(), $arFilter, false, array(), $arSelect);
 			{
 				$url1 = 'https://sapi.life-pay.ru/cloud-print/create-receipt';
 				$params1 = array(
-					'apikey' => $cass_login,
-					'login' => $cass_key,
+					'apikey' => $cass_key,
+					'login' => $cass_login,
 					'purchase' =>array(
 						'products'=>array([
 							'name'=>$arResult["description"],
