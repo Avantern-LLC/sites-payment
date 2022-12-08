@@ -31,7 +31,7 @@
    7.  Инфоблок становится активным
 
 
-![](https://drive.google.com/file/d/1Gzbgrvivlr2XjCSwc5ELbNtHvlTdiHEO/view?usp=share_link)
+ ![](https://drive.google.com/file/d/1QRTm0Gc3XtkLU-XWrfLZhIV6Lozbw8lN/view?usp=share_link)
 
 #### **ВАЖНО**:<br>
 
@@ -75,6 +75,8 @@
 
        >>  2. Инфоблок остается **деактивированным**, чтобы попасть в слудующий запуск крона (особенно полезно при статусе платежа **pending**)
    
+![](https://drive.google.com/file/d/1-5N1qwI1CGWSC00JO8-OMqsYtyIVKKap/view?usp=share_link)
+
 ### *Notice*
 
   > - Скрипт [check.php](https://github.com/Avantern-LLC/sites-payment/blob/release/pay.avantern/check.php) также полезен в том случае, если в момент совершения оплаты не удалось выполнить фискализацию, чек не был сформирован (например, если ФН не был доступен)
