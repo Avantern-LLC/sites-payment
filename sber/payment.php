@@ -8,6 +8,10 @@ Bitrix\Main\Loader::IncludeModule('iblock');
 $el = new CIBlockElement;
 $cib_id="6"; //задаем ИД информационного блока
 $ps_key=file_get_contents('/home/bitrix/.metadata/payler_key', false, null, 0); //извлекаем в строку все содержимое файла с ключем платежной системы
+$sber_user=file_get_contents('/home/bitrix/.metadata/sber_user', false, null, 0);
+$sber_pass=file_get_contents('/home/bitrix/.metadata/sber_password', false, null, 0);
+$p_host = 'https://3dsec.sberbank.ru';
+$returnUrl = 'https://pay.avantern.ru';
 
 /*
 $arResult = Array();
@@ -34,6 +38,30 @@ $description = 'Оплата услуг по договору '.$num.'. Услу
   
 //$orderId=time();
 
+$sUrl = $p_host'/payment/rest/register.do';  
+$sData = http_build_query(array(
+    'userName' => $sber_user,
+    'password' => $sber_pass,
+    'orderNumber' => $orderId,
+    'amount' => $sum,
+    'returnUrl' => $returnUrl,
+    'email' => $email
+    )
+);
+
+$result = file_get_contents($sUrl.http_build_query($sData), false, stream_context_create(array(
+    'http' => array(
+        'method'  => 'POST',
+        'header'  => 'Content-type: application/x-www-form-urlencoded',
+        'content' => http_build_query($sData)
+        )
+    )
+));
+
+$result = json_decode($result);
+
+
+/*
 $qUrl = 'https://secure.payler.com/gapi/StartSession?';
 $qData = http_build_query(array(
     'key' => $ps_key, 
@@ -44,7 +72,8 @@ $qData = http_build_query(array(
 	'userdata'=>$description,
 	'email'=>$email,
 	'total'=>1,
-	'lang'=>'ru'));
+	'lang'=>'ru')
+);
 
 $result = file_get_contents($qUrl.http_build_query($qData), false, stream_context_create(array(
     'http' => array(
@@ -53,7 +82,7 @@ $result = file_get_contents($qUrl.http_build_query($qData), false, stream_contex
         'content' => http_build_query($qData)
         )
     )));
-
+*/
     /*
 $curl = curl_init();
 curl_setopt_array($curl, array(
@@ -66,22 +95,49 @@ curl_setopt_array($curl, array(
     ));
 $result = curl_exec($curl);
 curl_close($curl);
-*/
-$result = json_decode($result);
 
+$result = json_decode($result);
+*/
 // echo "<pre>"; print_r($result); echo "</pre>";
 // $res = json_decode($res);
 //	print_r($result->session_id);
 
-$session_id=$result->session_id;
+$p_orderId = $result->orderId;
+$pf_url = $result->formUrl;
 
-$url = 'https://secure.payler.com/gapi/Pay?session_id='.$session_id;
+//$session_id=$result->session_id;
 
-header('Refresh: 1; url="'.$url.'"');
+//$url = 'https://secure.payler.com/gapi/Pay?session_id='.$session_id;
+
+header('Refresh: 1; url="'.$pf_url.'"');
 
 //  echo "Через 5 секунд вы будите переведены на платежный шлюз банка))";
 //	LocalRedirect($url);
 
+$sUrl = $p_host'/payment/rest/getOrderStatusExtended.do'
+$sData = http_build_query(array(
+    'userName' => "",
+    'password' => "",
+    'orderNumber' => $orderId
+    )
+);
+
+$result = file_get_contents($sUrl.http_build_query($sData), false, stream_context_create(array(
+    'http' => array(
+        'method'  => 'POST',
+        'header'  => 'Content-type: application/x-www-form-urlencoded',
+        'content' => http_build_query($sData)
+         )
+    )
+));
+
+$result1 = json_decode($result);
+
+$status = $result1->actionCode;
+
+echo $result1->actionCode;
+
+/*
 $qUrl = 'https://secure.payler.com/gapi/GetStatus';
 $qData = http_build_query(array(
     'key' => $ps_key, 
@@ -95,7 +151,7 @@ $result = file_get_contents($qUrl.http_build_query($qData), false, stream_contex
         'content' => http_build_query($qData)
         )
     )));
-
+*/
 /*
 $curl = curl_init();
 curl_setopt_array($curl, array(
@@ -110,13 +166,13 @@ curl_setopt_array($curl, array(
 $result1 = curl_exec($curl);
 curl_close($curl);
 */
-
+/*
 $result1 = json_decode($result);
 
 $status = $result1->status;
 
 echo $result1->status;
-
+*/
 /*
 $PROP = array();
 //ФИО
