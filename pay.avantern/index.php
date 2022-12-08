@@ -16,6 +16,7 @@ $cib_id="6"; //задаем ИД информационного блока
 $ps_key=file_get_contents('/home/bitrix/.metadata/payler_key', false, null, 0); //извлекаем в строку все содержимое файла с ключем платежной системы
 $cass_login=file_get_contents('/home/bitrix/.metadata/lifepay_login', false, null, 0); //извлекаем в строку все содержимое файла с логином облачной кассы
 $cass_key=file_get_contents('/home/bitrix/.metadata/lifepay_key', false, null, 0); //извлекаем в строку все содержимое файла с ключем облачной кассы
+$site="https://pay.avantern.ru"; //сайт на который перенаправляем клиента
 //$dir = $APPLICATION->GetCurUri();
 //$dir = explode("order_id=", $dir);
 $order=$_GET["order_id"];
@@ -122,7 +123,7 @@ while($ob = $res->GetNextElement())
  				$ob11->Update($arFields["ID"], ['ACTIVE' => 'Y']);
 				}
 			logFile($result1);
-			header('Refresh: 1; url="https://pay.avantern.ru"'); //перенаправляем клиента обратно на сайт
+			header("Refresh: 1; url=$site"); //перенаправляем клиента обратно на сайт
 			}
 		}
 	}
