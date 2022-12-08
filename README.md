@@ -31,8 +31,7 @@
    7.  Инфоблок становится активным
 
 
-<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAIAAAGuqymWAAAACXBIWXMAAA7DAAAOwwHHb6hkAAACiElEQVR4nGVTzUsbQRQf4nrwAxEVlFYi6qEF2wq1JmmsDShIW4u2KFZCCxLFixdp794UD2LwT/Ai9NBDA6lJC8b6tSY1W9etm01c89WQNLHBbIRCiyZ90xnWmA5vhje/935v3scuOjs72+3pyWazCHbG6fRqm7D2wW5XFAVrwZ0d5NPp9xBCgiCwLItBAHIXF3AGHA4EIcDKlZfDSQNxCwveoSF8Ye8bwS08OQknjiPe7QA3vrERbc7OggbylWFQMplcd7mcq6uyLOMAsPxdD8BfFe7ZcxwPHlOh35FI4NFjonvutGOeUFZGgkrd3UQB8ZrN2JZKpWxTU3xpKX22quqQ42iVEPa7JH15+cptMh3MzBCEFrPx+k1hIn694SQeBzP6EQpR1GDI5/PU3N6OedtjYypDtYFg2+feXnI50DadKwpOp6REvNeZisXQ1vy8mndofFzVaS58RQW579fXE2VnZITajo+OtmtrackajXNwMJFI4DzxFINBt9v90eGAwbrW1nieBxvl0aUoHquVe2gKGLsKy5X0Bp/ewE1P//xHIAuR7riXloqmFOh/GnjS7ysA/Tq9d2KC0mCzi4vyVQ7IeSYDTTp+MXoF79TxFgstYKOvr4gD8ksQcrncQXMzf+260NIqdnQQ3NvSgnsJ1M3h4cNbt6G3327c3K+r29NocF8tlvjcnNpaKgyzrdVmyecQl+X1hoYij/TKyp+TkyKQr6wUbTaaJO5iJuMwm9Ux/S/7DLNlNCaj0ctOnp6eRqNRnyh6PB7b8vLb0VF7W5uzpuZTdbWjtfX9wMA7q3WXZeH3C4fD6XT6cm6EDB92LBY7lmW/3+/zQRxRkiS4RiIR+K/AQXX+C0EGOyw44LvrAAAAAElFTkSuQmCC"/> 
-
+![][https://drive.google.com/file/d/1Gzbgrvivlr2XjCSwc5ELbNtHvlTdiHEO/view?usp=share_link]
 #### **ВАЖНО**:<br>
 
 Если клиент после успешной оплаты закрывает страницу платежного шлюза, не дождавшись перехода обртано на сайт, получает отказ от банка в платежном шлюзе или просто закрывает сессию браузера - скрипт [index.php](https://github.com/Avantern-LLC/sites-payment/blob/release/pay.avantern/index.php) не отрабатывает.<br>
