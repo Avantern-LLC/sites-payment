@@ -8,9 +8,9 @@ Bitrix\Main\Loader::includeModule('catalog');
 Bitrix\Main\Loader::IncludeModule('iblock');
 $el = new CIBlockElement;
 $cib_id="6"; //задаем ИД информационного блока
-$ps_key=file_get_contents('/home/bitrix/.metadata/payler_key', false, null, 0, null); //извлекаем в строку все содержимое файла с ключем платежной системы
-$cass_login=file_get_contents('/home/bitrix/.metadata/lifepay_login', false, null, 0, null); //извлекаем в строку все содержимое файла с логином облачной кассы
-$cass_key=file_get_contents('/home/bitrix/.metadata/lifepay_key', false, null, 0, null); //извлекаем в строку все содержимое файла с ключем облачной кассы
+$ps_key=file_get_contents('/home/bitrix/.metadata/payler_key', false, null, 0); //извлекаем в строку все содержимое файла с ключем платежной системы
+$cass_login=file_get_contents('/home/bitrix/.metadata/lifepay_login', false, null, 0); //извлекаем в строку все содержимое файла с логином облачной кассы
+$cass_key=file_get_contents('/home/bitrix/.metadata/lifepay_key', false, null, 0); //извлекаем в строку все содержимое файла с ключем облачной кассы
 ?>
 <?
 //получаем текущую дату и время
