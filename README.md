@@ -31,7 +31,8 @@
    7.  Инфоблок становится активным
 
 
-![][https://drive.google.com/file/d/1Gzbgrvivlr2XjCSwc5ELbNtHvlTdiHEO/view?usp=share_link]
+![](https://drive.google.com/file/d/1Gzbgrvivlr2XjCSwc5ELbNtHvlTdiHEO/view?usp=share_link)
+
 #### **ВАЖНО**:<br>
 
 Если клиент после успешной оплаты закрывает страницу платежного шлюза, не дождавшись перехода обртано на сайт, получает отказ от банка в платежном шлюзе или просто закрывает сессию браузера - скрипт [index.php](https://github.com/Avantern-LLC/sites-payment/blob/release/pay.avantern/index.php) не отрабатывает.<br>
