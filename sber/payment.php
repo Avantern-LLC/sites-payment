@@ -1,5 +1,4 @@
 <?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php");?>
-
 <?
 //LocalRedirect("/success/");
 Bitrix\Main\Loader::includeModule('sale');
@@ -36,9 +35,7 @@ $orderId = "test-0812222123";
 $sum = $rub*100+$kop;
 $description = 'Оплата услуг по договору '.$num.'. Услуга: '.$service.'. Плательщик: '.$name.'. E-mail: '.$email;
   
-//$orderId=time();
-
-$sUrl = $p_host'/payment/rest/register.do';  
+$sUrl = 'https://3dsec.sberbank.ru/payment/rest/register.do';
 $sData = http_build_query(array(
     'userName' => $sber_user,
     'password' => $sber_pass,
@@ -59,7 +56,6 @@ $result = file_get_contents($sUrl.http_build_query($sData), false, stream_contex
 ));
 
 $result = json_decode($result);
-
 
 /*
 $qUrl = 'https://secure.payler.com/gapi/StartSession?';
@@ -114,7 +110,7 @@ header('Refresh: 1; url="'.$pf_url.'"');
 //  echo "Через 5 секунд вы будите переведены на платежный шлюз банка))";
 //	LocalRedirect($url);
 
-$sUrl = $p_host'/payment/rest/getOrderStatusExtended.do'
+$sUrl = 'https://3dsec.sberbank.ru/payment/rest/getOrderStatusExtended.do';
 $sData = http_build_query(array(
     'userName' => "",
     'password' => "",
