@@ -160,6 +160,41 @@ $APPLICATION->SetTitle("Оплата через Сбер");
 				</div>
 			</div>
 		</form>
+        <script>
+		function onSubmit(token) {
+			const form = document.querySelector('#sberpay-form');
+            form.submit();
+        }	
+            
+		function validate(event) {
+			event.preventDefault();
+			let errCount = -1;
+			const form = document.querySelector('#sberpay-form');
+			const el = [].slice.call(form.elements);
+			el.forEach(item => {
+				let isValid = true;
+				if (item.getAttribute('name') === "email") {
+					const EMAIL_REGEXP = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu;
+					isValid = EMAIL_REGEXP.test(item.value);
+				}
+				if (!item.value || !isValid) {
+				item.classList.add('error');
+				errCount++;
+				} else {
+				item.classList.remove('error')
+				}
+			});
+		
+			if (!errCount) {
+				grecaptcha.execute();
+			}
+		}
+	
+		function onload() {
+			var element = document.getElementById('sberpay-form');
+			element.onclick = validate;
+		}
+	</script>
 <script>onload();</script>
 	</div>
 </div>
