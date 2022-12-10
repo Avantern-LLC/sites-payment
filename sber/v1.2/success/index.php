@@ -111,7 +111,7 @@ while($ob = $res->GetNextElement())
 			$name=time();
 			$UID_NUMBER=$result1->data->uuid;
 			$arSelect = Array("ID", "IBLOCK_ID", "NAME", "PROPERTY_*");
-			$arFilter = Array("IBLOCK_ID"=>$cib_id, PROPERTY_PAY_ID"=>$order);
+			$arFilter = Array("IBLOCK_ID"=>$cib_id, "PROPERTY_PAY_ID"=>$order);
 			$res1 = CIBlockElement::GetList(Array(), $arFilter, false, Array(), $arSelect);
 			while($ob1 = $res1->GetNextElement())
 				{
