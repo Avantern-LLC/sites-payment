@@ -101,7 +101,7 @@ $res = CIBlockElement::GetList(Array(), $arFilter, false, array(), $arSelect);
                 */
                 // расскомментироать этот блок при переводе в боевой режим --end
 				$arSelect = Array("ID", "IBLOCK_ID", "NAME", "PROPERTY_*");
-				$arFilter = Array("IBLOCK_ID"=>$cib_id, "PROPERTY_PAY_ID"=> $arResult["order_id"]);
+				$arFilter = Array("IBLOCK_ID"=>$cib_id, "PROPERTY_ORDER_ID"=> $arResult["order_id"]);
 				$res1 = CIBlockElement::GetList(Array(), $arFilter, false, Array(), $arSelect);
 				while($ob1 = $res1->GetNextElement())
 				{
@@ -119,18 +119,20 @@ $res = CIBlockElement::GetList(Array(), $arFilter, false, array(), $arSelect);
 			} elseif($arResult["status"]=="-2007") { //-2007 - истек срок ввода данных карты
 				$UID_NUMBER_2="payment_not_found";
                 $arSelect = Array("ID", "IBLOCK_ID", "NAME", "PROPERTY_*");
-				$arFilter = Array("IBLOCK_ID"=>$cib_id, "PROPERTY_PAY_ID"=> $arResult["order_id"]);
+				$arFilter = Array("IBLOCK_ID"=>$cib_id, "PROPERTY_ORDER_ID"=> $arResult["order_id"]);
 				$res2 = CIBlockElement::GetList(Array(), $arFilter, false, Array(), $arSelect);
 				while($ob2 = $res2->GetNextElement())
 				{
 					$arFields = $ob2->GetFields();
 					CIBlockElement::SetPropertyValues($arFields["ID"], $cib_id, $UID_NUMBER_2, "UID_NUMBER");
+                    CIBlockElement::SetPropertyValues($arFields["ID"], $cib_id, $arResult["status"], "STATUS"); //записываем полученный статус оплаты в свойство элемента инфоблока
+                    CIBlockElement::SetPropertyValues($arFields["ID"], $cib_id, $arResult["stat_desc"], "STAT_DESC"); //описание
 					$ob22 = new CIBlockElement();
  					$ob22->Update($arFields["ID"], ['ACTIVE' => 'Y']);
 				}
 			} else { // во всех остальных случаях - записываем статус, активность элемента не меняем, чтобы он попал в запрос при следующем запуске скрипта
                 $arSelect = Array("ID", "IBLOCK_ID", "NAME", "PROPERTY_*");
-				$arFilter = Array("IBLOCK_ID"=>$cib_id, "PROPERTY_PAY_ID"=> $arResult["order_id"]);
+				$arFilter = Array("IBLOCK_ID"=>$cib_id, "PROPERTY_ORDER_ID"=> $arResult["order_id"]);
 				$res3 = CIBlockElement::GetList(Array(), $arFilter, false, Array(), $arSelect);
 				while($ob3 = $res3->GetNextElement())
 				{
