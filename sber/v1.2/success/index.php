@@ -61,7 +61,7 @@ while($ob = $res->GetNextElement())
     $orderStatus = json_decode($result);
 		
     $arResult["status"] = $orderStatus->actionCode; //код ответа о состояние платежа от платежного шлюза
-    $arResult["stat_desc"] = $orderStatus->errorMessage; //сообщение об ошибке или "успешно" в случае actionCode=0
+    $arResult["stat_desc"] = $orderStatus->actionCodeDescription; //расшифровка кода состояния платежа (пусто, если actionCode=0)
     $arResult["email"] = $orderStatus->payerData->email; //email, который ввел пользователь на странице платежного шлюза (по умолчанию совпадает с email из формы оплаты)
     $arResult["order_id"] = $orderStatus->orderNumber; //id заказа в системе сайта
     $arResult["client_ip"]= $orderStatus->ip; //ip клиента
