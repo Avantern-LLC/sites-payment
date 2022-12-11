@@ -79,7 +79,7 @@ $PROP["UID_NUMBER"]=$uuid_printer;
 //ИД платежа
 $PROP["PAY_ID"]=$pay_id;
 //IP клиента
-$PROP["CLIENT_IP"]=$pay_id;
+$PROP["CLIENT_IP"]="";
     
 $arLoadProductArray = Array(
     "MODIFIED_BY"    => $USER->GetID(), // элемент изменен текущим пользователем
