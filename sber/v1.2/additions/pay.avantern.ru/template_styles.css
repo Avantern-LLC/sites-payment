@@ -1,0 +1,147 @@
+form.newpay-form{
+
+}
+form.newpay-form div.questions{
+    display:none;
+}
+form.newpay-form div.questions.active{ 
+    display:block;
+}
+form.newpay-form div.input{
+    margin:0 15px 15px 0;
+}
+form.newpay-form div.input.last{
+    margin-right:0;
+}
+form.newpay-form div.input div.load{
+    display:none;
+    margin:12px 0 0;
+}
+form.newpay-form div.input div.load.active{
+    display:block;
+}
+form.newpay-form div.input div.load img{
+    margin:0 auto;
+}
+form.newpay-form div.input input[type="text"]{
+    width:100%;
+    font-size:14px;
+    color:#212121;
+    border-radius:5px;
+    padding:11px 10px;
+    border:1px solid #b3b3b3;
+}
+form.newpay-form div.input input[type="text"].right{
+    text-align:right;
+}
+form.newpay-form div.input input[type="text"].light{
+    box-shadow:0 3px 0 0 #555;
+}
+form.newpay-form div.input input[type="text"].wrong{
+    background:#e82a2c;
+    color:#fff;
+}
+form.newpay-form div.input textarea{
+    width:100%;
+    height:100px;
+    font-size:14px;
+    color:#212121;
+    border-radius:5px;
+    padding:11px 10px;
+    border:1px solid #b3b3b3;
+}
+form.newpay-form div.input textarea.wrong{
+    background:#e82a2c;
+    color:#fff;
+}
+form.newpay-form div.input div.select{
+    width:100%;
+    height:44px;
+    overflow:hidden;
+    background:#fff url(images/calc-select.png) no-repeat right 19px;
+    border-radius:5px;border:1px solid #b3b3b3;
+}
+form.newpay-form div.input div.select.wrong{
+    background-color:#ff0000;
+}
+form.newpay-form div.input div.select select{
+    width:100%;
+    height:40px;
+    background:transparent;
+    background:rgba(0, 0, 0, 0);
+    -webkit-appearance:none;
+    border:0;outline:0;
+    font-size:14px;
+    color:#212121;
+    padding:10px 8px 8px;
+    cursor:pointer;
+}
+form.newpay-form div.input input[type="submit"]{
+    font-size:16px;
+    line-height:14px;
+    color:#fff;
+    border-radius:5px;
+    padding:15px 0;
+    text-decoration:none;
+    cursor:pointer;
+    text-align:center;
+    border:0;
+    display:none;
+    width:100%;
+}
+form.newpay-form div.input input[type="submit"].active{
+    display:block;
+}
+form.newpay-form div.input input[type="submit"].light{
+    background:#4797d3;
+    box-shadow:0 3px 0 0 #555;
+}
+form.newpay-form div.thank{
+    display:none;
+    font-size:17px;
+    line-height:21px;
+    text-align:center;
+    color:#03680f;
+    margin:3px 0 10px;
+}
+form.newpay-form div.thank.light{
+    color:#e2ad1a;
+}
+form.newpay-form div.thank.active{
+    display:block;
+}
+form.newpay-form div.del{
+    border-bottom:1px solid #d2d2d2;
+    margin:10px 0;
+}
+form.newpay-form table.comment{
+    border:0;
+    border-collapse:collapse;
+    width:100%;
+}
+form.newpay-form table.comment.comm2{
+    height:105px;
+}
+form.newpay-form table.comment td{
+    vertical-align:middle;
+    border-left:2px solid #b9b9b9;
+    padding-left:15px;
+}
+form.newpay-form div.small-title{
+    font-family:'PFBeauSansPro-SeBold', Trebuchet MS;
+    font-size:17px;
+    line-height:23px;
+    color:#1c1c1c;margin-bottom:10px;
+    margin-top:10px;
+}
+form.newpay-form div.input input[type="email"]{
+    width:100%;
+    font-size:14px;
+    color:#212121;
+    border-radius:5px;
+    padding:11px 10px;
+    border:1px solid #b3b3b3;
+}
+
+form .error {border-color: red !important}
+form .select:has(> select.error) {border-color: red !important}
