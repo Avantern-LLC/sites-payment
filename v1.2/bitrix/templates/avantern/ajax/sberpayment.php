@@ -36,6 +36,7 @@ $q_Data = array(
     'password'=>$sber_pass,
     'orderNumber'=>$orderId,
     'amount'=>$sum,
+    'description'=>$description,
     'returnUrl'=>$returnUrl,
     'failUrl'=>$failUrl,
     'email'=>$email
