@@ -22,8 +22,8 @@ $now = new DateTime();
 //формируем запрос на формирование массива элементов инфоблока
 $arSelect = Array("ID", "IBLOCK_ID", "NAME", "DATE_ACTIVE_FROM","PROPERTY_*");//IBLOCK_ID и ID обязательно должны быть указаны, см. описание arSelectFields
 //$arFilter = Array("IBLOCK_ID"=>6, "ACTIVE_DATE"=>"Y", "ACTIVE"=>"Y");
-//выбираем из инфоблока с ид=6 только неактивные элементы с датой изменения не старше 3 дней
-$arFilter = Array("IBLOCK_ID"=>$cib_id, ">TIMESTAMP_X"=>$now->modify('-10 day')->format('d.m.Y H:i:s'), "ACTIVE"=>"N");
+//выбираем из инфоблока с ид=6 только неактивные элементы с датой изменения не старше 10 дней и не младше 20 минут от текущей даты (лаг нужен, если клиент совершает несколько неудачных попыток оплаты)
+$arFilter = Array("IBLOCK_ID"=>$cib_id, ">TIMESTAMP_X"=>$now->modify('-10 day')->format('d.m.Y H:i:s'), "<=TIMESTAMP_X"=>$now->modify('-20 minutes')->format('d.m.Y H:i:s'), "ACTIVE"=>"N");
 //$arFilter = Array("IBLOCK_ID"=>6, "ACTIVE"=>"N");
 $res = CIBlockElement::GetList(Array(), $arFilter, false, array(), $arSelect);
 	while($ob = $res->GetNextElement())
