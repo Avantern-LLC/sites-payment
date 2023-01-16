@@ -19,11 +19,12 @@ $cass_key=file_get_contents('/home/bitrix/.metadata/lifepay', false, null, 12, 3
 <?
 $arResult = Array(); //массив, в котором сохраняем результаты
 //получаем текущую дату и время
-$now = new DateTime();
+$now1 = new DateTime();
+$now2 = new DateTime();
 //формируем запрос на формирование массива элементов инфоблока
 $arSelect = Array("ID", "IBLOCK_ID", "NAME", "DATE_ACTIVE_FROM","PROPERTY_*");//IBLOCK_ID и ID обязательно должны быть указаны, см. описание arSelectFields
 //выбираем из инфоблока с только неактивные элементы с датой изменения не старше указанного количества дней
-$arFilter = Array("IBLOCK_ID"=>$cib_id, ">TIMESTAMP_X"=>$now->modify('-10 day')->format('d.m.Y H:i:s'), "ACTIVE"=>"N");
+$arFilter = Array("IBLOCK_ID"=>$cib_id, ">=TIMESTAMP_X"=>$now1->modify('-10 day')->format('d.m.Y H:i:s'), "<=TIMESTAMP_X"=>$now2->modify('-30 minutes')->format('d.m.Y H:i:s'), "ACTIVE"=>"N");
 $res = CIBlockElement::GetList(Array(), $arFilter, false, array(), $arSelect);
 	while($ob = $res->GetNextElement())
 	{ 
