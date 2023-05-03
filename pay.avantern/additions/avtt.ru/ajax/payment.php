@@ -19,11 +19,13 @@ $cib_id="15"; //задаем ИД информационного блока
     
     $sum = $rub*100+$kop;
 	$description = 'Оплата услуг по договору '.$num.'. Услуга: '.$service.'. Плательщик: '.$name.'. E-mail: '.$email;
-  
-$orderId=time();
+    
+if ((!empty($_REQUEST["service"])) && (!empty($_REQUEST["name"])) && (!empty($_REQUEST["dogovor"])) && (!empty($_REQUEST["email"])) && (!empty($_REQUEST["rub"])) && (!empty($_REQUEST["kop"])))
+    {
+    $orderId=time();
 
-$queryUrl = 'https://secure.payler.com/gapi/StartSession?';
- $queryData = http_build_query(array(
+    $queryUrl = 'https://secure.payler.com/gapi/StartSession?';
+    $queryData = http_build_query(array(
         'key' => $ps_key, 
 		'type' =>1,
 		'order_id'=>$orderId,
@@ -34,64 +36,64 @@ $queryUrl = 'https://secure.payler.com/gapi/StartSession?';
 		'total'=>1,
 		'lang'=>'ru'));
 
- $curl = curl_init();
- curl_setopt_array($curl, array(
- CURLOPT_SSL_VERIFYPEER => 0,
- CURLOPT_POST => 1,
- CURLOPT_HEADER => 0,
- CURLOPT_RETURNTRANSFER => 1,
- CURLOPT_URL => $queryUrl,
- CURLOPT_POSTFIELDS => $queryData,
- ));
+    $curl = curl_init();
+    curl_setopt_array($curl, array(
+    CURLOPT_SSL_VERIFYPEER => 0,
+    CURLOPT_POST => 1,
+    CURLOPT_HEADER => 0,
+    CURLOPT_RETURNTRANSFER => 1,
+    CURLOPT_URL => $queryUrl,
+    CURLOPT_POSTFIELDS => $queryData,
+    ));
 
- $result = curl_exec($curl);
- $result = json_decode($result);
- curl_close($curl);
+    $result = curl_exec($curl);
+    $result = json_decode($result);
+    curl_close($curl);
 
-$result1 = curl_exec($curl);
-curl_close($curl);
+    $result1 = curl_exec($curl);
+    curl_close($curl);
 
-$result1 = json_decode($result);
+    $result1 = json_decode($result);
 
-$status = $result1->status;
+    $status = $result1->status;
 
-echo $result1->status;
+    echo $result1->status;
 
-$PROP = array();
-//ФИО
-$PROP["FIO"]=$name;
-//Услуга
-$PROP["SERVICES"]=$service;
-//Номер договора
-$PROP["NUMBER"]=$num;
-//Почта
-$PROP["EMAIL"]=$email;
-//Телефон
-$PROP["PHONE"]=$phone;
-//Сумма
-$PROP["SUMM"]=$sum/100;
-//Номер транзакции
-$PROP["NUMBER_PAY"]=$orderId;
-//Статус операции
-$PROP["STATUS"]=$status;
+    $PROP = array();
+    //ФИО
+    $PROP["FIO"]=$name;
+    //Услуга
+    $PROP["SERVICES"]=$service;
+    //Номер договора
+    $PROP["NUMBER"]=$num;
+    //Почта
+    $PROP["EMAIL"]=$email;
+    //Телефон
+    $PROP["PHONE"]=$phone;
+    //Сумма
+    $PROP["SUMM"]=$sum/100;
+    //Номер транзакции
+    $PROP["NUMBER_PAY"]=$orderId;
+    //Статус операции
+    $PROP["STATUS"]=$status;
 
-		 $arLoadProductArray = Array(
-  "MODIFIED_BY"    => $USER->GetID(), // элемент изменен текущим пользователем
-  "IBLOCK_SECTION_ID" => false,          // элемент лежит в корне раздела
-  "IBLOCK_ID"      => $cib_id,
-  "PROPERTY_VALUES"=> $PROP,
-  "NAME"           => $description,
-  "ACTIVE"         => "N"            // не активен пока не потдтвердится оплата
-  );
+	$arLoadProductArray = Array(
+        "MODIFIED_BY"    => $USER->GetID(), // элемент изменен текущим пользователем
+        "IBLOCK_SECTION_ID" => false,          // элемент лежит в корне раздела
+        "IBLOCK_ID"      => $cib_id,
+        "PROPERTY_VALUES"=> $PROP,
+        "NAME"           => $description,
+        "ACTIVE"         => "N"            // не активен пока не потдтвердится оплата
+    );
 
 
-$PRODUCT_ID = $el->Add($arLoadProductArray);
+    $PRODUCT_ID = $el->Add($arLoadProductArray);
 
 	$session_id=$result->session_id;
     $url = 'https://secure.payler.com/gapi/Pay?session_id='.$session_id;
 	header('Refresh: 1; url="'.$url.'"');
+}
 
 ?>
-
 
 <?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/epilog_after.php");?>
